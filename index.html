@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hola</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 50%, #ede9fe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form {
+            background: rgba(2253, 242, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(244, 114, 182, 0.2);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .login-form.hidden {
+            display: none;
+        }
+
+        .photo-container {
+            display: none;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .photo-container.visible {
+            display: block;
+        }
+
+        h1 {
+            color: #ec4899;
+            margin-bottom: 30px;
+            font-weight: 500;
+            font-size: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5a5a5a;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #ec4899;
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(107, 115, 255, 0.15);
+        }
+
+        .btn-ingresar {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .btn-ingresar:hover {
+            background: linear-gradient(135deg, #db2777 0%, #ec4899 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(107, 115, 255, 0.3);
+        }
+
+        .btn-ingresar:active {
+            transform: translateY(-1px);
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .success-message {
+            color: #ec4899;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-form {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .btn-ingresar {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .password-input {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .container {
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Formulario de Login -->
+        <div class="login-form" id="loginForm">
+            <h1>hola</h1>
+            <form id="passwordForm">
+                <div class="input-group">
+                    <label for="password">Ingresa la clave:</label>
+                    <input 
+                        type="password"
+                        id="password" 
+                        class="password-input" 
+                        placeholder=""
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn-ingresar">
+                    Ingresar
+                </button>
+            </form>
+            <div class="error-message" id="errorMessage">
+                Te equivocaste 😹😹😹
+            </div>
+        </div>
+
+        <div class="photo-container" id="photoContainer">
+            <div class="success-message">
+                👏👏
+            </div>
+            <img 
+                src="guayabito.jpg" 
+                alt="Imagen protegida" 
+                class="photo"
+            >
+        </div>
+    </div>
+
+    <script>
+
+        const CLAVE_CORRECTA = "mango con chile"; 
+
+        const loginForm = document.getElementById('loginForm');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordInput = document.getElementById('password');
+        const errorMessage = document.getElementById('errorMessage');
+        const photoContainer = document.getElementById('photoContainer');
+
+        function mostrarError() {
+            errorMessage.classList.add('show');
+            passwordInput.style.borderColor = '#ff6b9d';
+        
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+                passwordInput.style.borderColor = '#e8e8e8';
+            }, 3000);
+        }
+
+        function mostrarFoto() {
+            loginForm.classList.add('hidden');
+            photoContainer.classList.add('visible');
+        }
+
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const claveIngresada = passwordInput.value.trim();
+            
+            if (claveIngresada === CLAVE_CORRECTA) {
+                mostrarFoto();
+            } else {
+                mostrarError();
+                passwordInput.value = ''; // Limpiar el campo
+                passwordInput.focus(); // Enfocar de nuevo
+            }
+        });
+
+        window.addEventListener('load', function() {
+            passwordInput.focus();
+        });
+
+        passwordInput.addEventListener('input', function() {
+            if (errorMessage.classList.contains('show')) {
+                errorMessage.classList.remove('show');
+                passwordInput.style.borderColor = '#e8e8e8';
+            }
+        });
+    </script>
+</body>
+</html>
